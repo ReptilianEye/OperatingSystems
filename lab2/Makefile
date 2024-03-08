@@ -10,7 +10,9 @@ compile_static:
 
 
 compile_shared:
-	${GCC} -shared -fPIC libcollatz.c -o libcollatz.so
+	gcc -fPIC -c libcollatz.c
+	${GCC} -shared libcollatz.c -o libcollatz.so
+	${GCC} main.c -L. -l collatz -o main
 
 clean:
 	rm -f *.o *.a *.so main
