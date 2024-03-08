@@ -5,7 +5,7 @@ main:
 
 compile_static:
 	${GCC} -c libcollatz.c
-	ar rc libcollatz.a libcollatz.o
+	ar rcs libcollatz.a libcollatz.o
 	${GCC} main.c -L. -l:libcollatz.a -o main
 
 
