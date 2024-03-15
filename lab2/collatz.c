@@ -1,4 +1,4 @@
-#include "libcollatz.h"
+#include "collatz.h"
 
 int collatz_conjecture(int input)
 {
