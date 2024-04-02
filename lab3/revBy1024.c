@@ -21,7 +21,6 @@ int main(int argc, char const *argv[])
     char buffer[BUFFER_SIZE];
 
     fseek(in_file, 0, SEEK_END);
-    printf("hi");
 
     for (long bytesLeft = ftell(in_file); bytesLeft > 0; fseek(in_file, -BUFFER_SIZE, SEEK_CUR))
     {
