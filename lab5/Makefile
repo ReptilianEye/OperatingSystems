@@ -2,10 +2,10 @@ CC = gcc
 
 make demo:
 	$(CC) -o demo signals_demo.c
-	./demo none
-	./demo ignore
-	./demo handler
-	./demo mask
+# ./demo none
+# ./demo ignore
+# ./demo handler
+# ./demo mask
 
 make cacher:
 	$(CC) -o catcher catcher.c

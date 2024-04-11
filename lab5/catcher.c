@@ -29,12 +29,12 @@ int main()
 
     printf("Catcher PID: %d\n", getpid());
 
-    struct sigaction act;
-    act.sa_sigaction = handler_for_SIGUSR1;
-    act.sa_flags = SA_SIGINFO;
-    sigemptyset(&act.sa_mask);
+    struct sigaction action;
+    action.sa_sigaction = handler_for_SIGUSR1;
+    action.sa_flags = SA_SIGINFO;
+    sigemptyset(&action.sa_mask);
 
-    sigaction(SIGUSR1, &act, NULL);
+    sigaction(SIGUSR1, &action, NULL);
 
     while (1)
     {
