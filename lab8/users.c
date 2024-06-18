@@ -45,7 +45,6 @@ int main(int argc, char *argv[])
         printf("Usage: %s <number of users>\n", argv[0]);
         return 1;
     }
-
     long users_n = strtol(argv[1], NULL, 10);
 
     signal(SIGINT, handler);
@@ -56,7 +55,6 @@ int main(int argc, char *argv[])
         perror("shm_open");
         return 1;
     }
-
     memory_map_t *memory_map = mmap(NULL, sizeof(memory_map_t), PROT_READ | PROT_WRITE, MAP_SHARED, mem_fd, 0);
 
     if (memory_map == MAP_FAILED)
@@ -64,14 +62,13 @@ int main(int argc, char *argv[])
         perror("mmap");
         return 1;
     }
-
-    char user_in_string[100] = {0};
-
     for (int i = 0; i < users_n; i++)
     {
         pid_t pid = fork();
         if (pid == 0)
         {
+            char user_in_string[100] = {0};
+
             while (!finish)
             {
                 random_string(user_in_string, 10);
@@ -81,7 +78,7 @@ int main(int argc, char *argv[])
                 {
                     int tmp;
                     sem_getvalue(&memory_map->printers[j].semaphore, &tmp);
-                    if (tmp > 1)
+                    if (tmp >= 1)
                     {
                         idle_printer_index = j;
                         break;
@@ -100,7 +97,7 @@ int main(int argc, char *argv[])
                 memcpy(memory_map->printers[idle_printer_index].buffer, user_in_string, memory_map->printers[idle_printer_index].buffer_size);
 
                 printf("User %d: sent %s to printer %d\n", i, user_in_string, idle_printer_index);
-                // fflush(stdout);
+
                 sleep(rand() % 5 + 1);
             }
             exit(0);

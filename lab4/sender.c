@@ -29,7 +29,7 @@ int main(int argc, char **argv)
         printf("Child pid = %d, parent pid = %d\n", getpid(), getppid());
         printf("child's local = %d, child's global = %d\n", localVar, globalVar);
 
-        int status = execl("/bin/ls", argv[1], NULL);
+        int status = execl("/bin/ls", argv[1], "-l", NULL);
 
         exit(status);
     }

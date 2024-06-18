@@ -81,11 +81,13 @@ int main(int argc, char *argv[])
                 sem_getvalue(&memory_map->printers[i].semaphore, &val);
                 if (val == 1)
                 {
+
                     for (int j = 0; j < memory_map->printers[i].buffer_size; j++)
                     {
                         printf("%c", memory_map->printers[i].buffer[j]);
                         sleep(1);
                     }
+                    // printf("drukarka %d", i);
                     printf("\n");
                     fflush(stdout);
 

@@ -2,7 +2,7 @@ CC = gcc
 
 make printers: printers.c
 	$(CC) -o printers printers.c -lrt -lpthread
-	./printers 5
+	./printers 2
 
 make users: users.c
 	$(CC) -o users users.c -lrt -lpthread
